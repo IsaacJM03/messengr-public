@@ -6,8 +6,10 @@ from .serializers import MessageSerializer
 
 class MessageCreateView(APIView):
  def post(self, request):
+    #  print(User.objects.all()) #no user exist -> <QuerySet []>
      sender = User.objects.first()
      recipient = User.objects.last()
+    #  print(sender)
      data = {"sender": sender.id, "recipient": recipient.id, "text": "Hello", "language": "fr"}
      serializer = MessageSerializer(data=data)
      serializer.is_valid(raise_exception=True)
