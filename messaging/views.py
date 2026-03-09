@@ -6,7 +6,7 @@ from .serializers import MessageSerializer
 
 class MessageCreateView(APIView):
  def post(self, request):
-    #  print(User.objects.all()) #no user exist -> <QuerySet []>
+    #  print(User.objects.all()) #no user exist -> <QuerySet []>, had to create two users
      sender = User.objects.first()
      recipient = User.objects.last()
     #  print(sender)
