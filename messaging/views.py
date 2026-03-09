@@ -9,7 +9,6 @@ class MessageCreateView(APIView):
     #  print(User.objects.all()) #no user exist -> <QuerySet []>, had to create two users
      sender = User.objects.first()
      recipient = User.objects.last()
-    #  print(sender)
      data = {"sender": sender.id, "recipient": recipient.id, "text": request.data.get("text"), "language": request.data.get("language")}
      serializer = MessageSerializer(data=data)
      serializer.is_valid(raise_exception=True)
