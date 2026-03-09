@@ -1,7 +1,6 @@
 import pytest
 from django.contrib.auth.models import User
-from messaging.models import Message # ImportError: attempted relative import with no known parent package
-#decided to use a more absolute path
+from messaging.models import Message # ImportError: attempted relative import with no known parent package -> decided to use a more absolute path
 from messaging.serializers import MessageSerializer
 
 
