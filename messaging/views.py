@@ -7,9 +7,13 @@ from .serializers import MessageSerializer
 class MessageCreateView(APIView):
  def post(self, request):
     #  print(User.objects.all()) #no user exist -> <QuerySet []>, had to create two users
-     sender = User.objects.first()
-     recipient = User.objects.last()
-     data = {"sender": sender.id, "recipient": recipient.id, "text": request.data.get("text"), "language": request.data.get("language")}
+    #  sender = User.objects.first()
+    #  recipient = User.objects.last()
+    #  print(sender.id,recipient.id)
+     user_list = User.objects.all()
+     if (request.data.get("sender") not in user_list) or (request.data.get("recipient") not in user_list):
+         return Response({"error": "Sender and recipient must exist"})
+     data = {"sender": request.data.get("sender"), "recipient": request.data.get("recipient"), "text": request.data.get("text"), "language": request.data.get("language")}
      serializer = MessageSerializer(data=data)
      serializer.is_valid(raise_exception=True)
      msg = serializer.save()
